@@ -1,0 +1,26 @@
+GITHUB DEMO 4 – SSH Setup
+
+Step 1: Generate SSH key
+ssh-keygen -t rsa -b 4096 -C "[your_email@example.com](mailto:your_email@example.com)"
+
+Step 2: Start SSH agent
+eval "$(ssh-agent -s)"
+
+Step 3: Add key
+ssh-add ~/.ssh/id_rsa
+
+Step 4: Copy public key
+cat ~/.ssh/id_rsa.pub
+
+Step 5: Add key to GitHub (Settings → SSH Keys)
+
+Step 6: Test connection
+ssh -T [git@github.com](mailto:git@github.com)
+
+# Explain: SSH allows secure login without password
+
+# Teaching Tip:
+
+# HTTPS = username/password
+
+# SSH = secure key-based access

@@ -1,0 +1,48 @@
+GIT DEMO 2 – Selective Staging (git add specific files)
+
+Step 1: Create a new project
+mkdir demo-git-2
+cd demo-git-2
+git init
+
+Step 2: Create two files
+echo "Apple" > fruits.txt
+echo "Carrot" > vegetables.txt
+
+Step 3: Check status
+git status
+
+Step 4: Add ONLY fruits.txt
+git add fruits.txt
+
+Step 5: Commit only fruits.txt
+git commit -m "added fruits file"
+
+Step 6: Check status (vegetables.txt should still be untracked)
+git status
+
+Step 7: Now add vegetables.txt
+git add vegetables.txt
+
+Step 8: Commit vegetables file
+git commit -m "added vegetables file"
+
+Step 9: Modify both files
+echo "Banana" >> fruits.txt
+echo "Potato" >> vegetables.txt
+
+Step 10: Add ONLY fruits.txt
+git add fruits.txt
+
+Step 11: Commit only fruits changes
+git commit -m "updated fruits"
+
+Step 12: Check status (vegetables.txt should still have changes)
+git status
+
+Step 13: Add and commit vegetables.txt
+git add vegetables.txt
+git commit -m "updated vegetables"
+
+Step 14: View commit history
+git log --oneline

@@ -1,0 +1,69 @@
+GIT DEMO 3 – git diff (View Changes Before Commit)
+
+Step 1: Create a new project
+mkdir demo-git-diff
+cd demo-git-diff
+git init
+
+# Explain: We are initializing a new Git repository
+
+Step 2: Create a file
+echo "Hello Git" > file.txt
+
+# Explain: Creating a file in working directory
+
+Step 3: Add and commit
+git add file.txt
+
+# Explain: Moving file to staging area
+
+git commit -m "initial commit"
+
+# Explain: Saving snapshot in Git history
+
+Step 4: Modify the file
+echo "This is a new line" >> file.txt
+
+# Explain: Making changes after commit
+
+Step 5: Check status
+git status
+
+# Explain: Git detects file is modified but not staged
+
+Step 6: View changes (not staged)
+git diff
+
+# Explain: Shows difference between working directory and staging area
+
+Step 7: Add file to staging
+git add file.txt
+
+# Explain: Now changes are moved to staging
+
+Step 8: View changes in staging
+git diff --staged
+
+# Explain: Shows difference between staging and last commit
+
+Step 9: Commit changes
+git commit -m "added new line"
+
+# Explain: Saving staged changes
+
+Step 10: Verify no changes left
+git diff
+
+# Explain: No output means no unstaged changes
+
+# Teaching Tip:
+
+# Before git add  -> use git diff
+
+# After git add   -> use git diff --staged
+
+# Ask Students:
+
+# Why did git diff stop showing output after git add?
+
+# What is the difference between staging and commit?

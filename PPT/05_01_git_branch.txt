@@ -1,0 +1,99 @@
+GIT DEMO 4 – Git Branching (create, switch, merge, delete)
+
+Step 1: Create a new project
+mkdir demo-git-branch
+cd demo-git-branch
+git init
+
+# Explain: Initialize a new Git repository
+
+Step 2: Create a file and commit
+echo "Main branch code" > app.txt
+git add app.txt
+git commit -m "initial commit on main"
+
+# Explain: This is our base commit on main branch
+
+Step 3: Check current branch
+git branch
+
+# Explain: Shows current branch (* indicates active branch)
+
+Step 4: Create a new branch
+git branch feature
+
+# Explain: Creating a new branch called 'feature'
+
+Step 5: Switch to feature branch
+git checkout feature
+
+# OR (modern way)
+
+git switch feature
+
+# Explain: Moving from main → feature branch
+
+Step 6: Modify file in feature branch
+echo "Feature work added" >> app.txt
+git add app.txt
+git commit -m "added feature work"
+
+# Explain: This change exists ONLY in feature branch
+
+Step 7: Switch back to main branch
+git checkout main
+
+# OR
+
+git switch main
+
+# Explain: Going back to main branch
+
+Step 8: Check file content
+cat app.txt
+
+# Explain: Feature changes are NOT visible in main
+
+Step 9: Merge feature branch into main
+git merge feature
+
+# Explain: Bringing feature changes into main branch
+
+Step 10: Verify merge
+cat app.txt
+
+# Explain: Now main branch has feature changes
+
+Step 11: Delete feature branch
+git branch -d feature
+
+# Explain: Deletes the branch after successful merge
+
+# Optional (force delete if not merged)
+
+# git branch -D feature
+
+Step 12: View branches
+git branch
+
+# Explain: feature branch should no longer be listed
+
+Step 13: View commit history
+git log --oneline --graph --all
+
+# Explain: Visual representation of commits and merge
+
+# Teaching Tip:
+
+# Branch = separate line of work
+
+# Always delete branches after merge to keep repo clean
+
+# Ask Students:
+
+# Why can we delete the branch after merge?
+
+# What happens if we try to delete an unmerged branch?
+
+Exercise for studetns 
+https://plum-poppy-0ea.notion.site/Branching-Exercise-b5460c881d56400cb046357d9a430bf8

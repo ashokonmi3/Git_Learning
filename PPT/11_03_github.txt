@@ -1,0 +1,43 @@
+GITHUB DEMO 1 – Create Repo + Push Code
+
+Step 1: Create local project
+mkdir github-demo
+cd github-demo
+git init
+
+Step 2: Create file
+echo "My first GitHub project" > app.txt
+
+Step 3: Add and commit
+git add .
+git commit -m "initial commit"
+
+# Explain: Local repo is ready
+
+Step 4: Create a repository on GitHub (via browser)
+
+# Go to github.com → New Repository → Do NOT initialize with README
+
+Step 5: Add remote
+git remote add origin https://github.com/<username>/github-demo.git
+
+# Explain: Linking local repo to GitHub repo
+
+Step 6: Push code
+git push -u origin main
+
+# Explain: Uploading code to GitHub
+
+Step 7: Verify on GitHub UI
+
+# Explain: Code is now visible online
+
+# Teaching Tip:
+
+# Local repo = your system
+
+# Remote repo = GitHub server
+
+# Ask Students:
+
+# What happens if we don't add remote?

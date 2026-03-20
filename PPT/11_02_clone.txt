@@ -1,0 +1,22 @@
+GITHUB DEMO 2 – git clone (GitHub repo)
+
+Step 1: Copy repo URL from GitHub
+
+Step 2: Clone repo
+git clone https://github.com/<username>/github-demo.git
+
+Step 3: Go inside folder
+cd github-demo
+
+Step 4: Check files
+ls
+
+# Explain: Entire repo + history downloaded
+
+# Teaching Tip:
+
+# Clone = download + connect to remote
+
+# Ask Students:
+
+# Difference between clone and download ZIP?

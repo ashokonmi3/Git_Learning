@@ -1,0 +1,112 @@
+GIT DEMO 5 – Merge Conflict (Branching + Merge + Conflict Resolution)
+
+Step 1: Create a new project
+mkdir demo-git-conflict
+cd demo-git-conflict
+git init
+
+# Explain: Initialize a new Git repository
+
+Step 2: Create a file and commit
+echo "Line 1: Hello World" > app.txt
+git add app.txt
+git commit -m "initial commit"
+
+# Explain: Base file created in main branch
+
+Step 3: Create and switch to feature branch
+git checkout -b feature
+
+# OR
+
+git switch -c feature
+
+# Explain: Creating and switching to feature branch
+
+Step 4: Modify file in feature branch
+echo "Line 2: Feature work" >> app.txt
+git add app.txt
+git commit -m "added feature line"
+
+# Explain: Feature branch has its own change
+
+Step 5: Switch back to main branch
+git checkout main
+
+# OR
+
+git switch main
+
+# Explain: Now we are back on main
+
+Step 6: Modify SAME file differently in main
+echo "Line 2: Main work" >> app.txt
+git add app.txt
+git commit -m "added main line"
+
+# Explain: Same line changed differently → conflict setup
+
+Step 7: Merge feature into main
+git merge feature
+
+# Explain: Git will show a MERGE CONFLICT
+
+Step 8: Check status
+git status
+
+# Explain: Git tells which file has conflict
+
+Step 9: Open app.txt and observe conflict markers
+
+# You will see something like:
+
+# <<<<<<< HEAD
+
+# Line 2: Main work
+
+# =======
+
+# Line 2: Feature work
+
+# >>>>>>> feature
+
+# Explain: Git cannot decide which change to keep
+
+Step 10: Resolve conflict manually
+
+# Edit file to desired final version, for example:
+
+# Line 1: Hello World
+
+# Line 2: Main work
+
+# Line 2: Feature work
+
+Step 11: Add resolved file
+git add app.txt
+
+# Explain: Mark conflict as resolved
+
+Step 12: Complete merge
+git commit -m "resolved merge conflict"
+
+# Explain: Finalize merge after conflict resolution
+
+Step 13: View commit history
+git log --oneline --graph --all
+
+# Explain: Shows merge commit and branch history
+
+# Teaching Tip:
+
+# Conflict happens when same file/line is changed in different branches
+
+# Git asks YOU to decide the correct version
+
+# Ask Students:
+
+# Why did conflict happen?
+
+# What do HEAD and feature represent?
+
+# Can we keep both changes?

@@ -1,0 +1,268 @@
+JENKINSFILE COMPLETE TRAINING SCRIPT (COPY-PASTE)
+
+---
+
+## STEP 1 – BASIC JENKINSFILE
+
+pipeline {
+agent any
+
+```
+stages {
+    stage('Hello') {
+        steps {
+            echo 'Pipeline started'
+        }
+    }
+
+    stage('Display File') {
+        steps {
+            script {
+                if (isUnix()) {
+                    sh 'cat app.txt'
+                } else {
+                    bat 'type app.txt'
+                }
+            }
+        }
+    }
+}
+```
+
+}
+
+---
+
+## STEP 2 – ADD PARAMETERS
+
+pipeline {
+agent any
+
+```
+parameters {
+    string(name: 'ENV', defaultValue: 'DEV', description: 'Environment')
+}
+
+stages {
+    stage('Print Environment') {
+        steps {
+            echo "Deploying to ${params.ENV}"
+        }
+    }
+}
+```
+
+}
+
+---
+
+## STEP 3 – MULTI-STAGE PIPELINE
+
+pipeline {
+agent any
+
+```
+stages {
+    stage('Build') {
+        steps {
+            echo 'Building application...'
+        }
+    }
+
+    stage('Test') {
+        steps {
+            echo 'Running tests...'
+        }
+    }
+
+    stage('Deploy') {
+        steps {
+            echo 'Deploying application...'
+        }
+    }
+}
+```
+
+}
+
+---
+
+## STEP 4 – FAIL BUILD (QUALITY CHECK)
+
+pipeline {
+agent any
+
+```
+stages {
+    stage('Check Code') {
+        steps {
+            script {
+                if (isUnix()) {
+                    sh 'grep ERROR app.txt'
+                } else {
+                    bat 'find "ERROR" app.txt'
+                }
+            }
+        }
+    }
+}
+```
+
+}
+
+---
+
+## STEP 5 – CONDITIONAL EXECUTION
+
+pipeline {
+agent any
+
+```
+parameters {
+    string(name: 'ENV', defaultValue: 'DEV')
+}
+
+stages {
+    stage('Deploy to Prod') {
+        when {
+            expression {
+                params.ENV == 'PROD'
+            }
+        }
+        steps {
+            echo 'Deploying to PRODUCTION'
+        }
+    }
+}
+```
+
+}
+
+---
+
+## STEP 6 – ADD TIMESTAMPS
+
+pipeline {
+agent any
+
+```
+options {
+    timestamps()
+}
+
+stages {
+    stage('Info') {
+        steps {
+            echo 'Pipeline with timestamps'
+        }
+    }
+}
+```
+
+}
+
+---
+
+## STEP 7 – FINAL COMBINED PIPELINE
+
+pipeline {
+agent any
+
+```
+parameters {
+    string(name: 'ENV', defaultValue: 'DEV')
+}
+
+options {
+    timestamps()
+}
+
+stages {
+    stage('Build') {
+        steps {
+            echo 'Building...'
+        }
+    }
+
+    stage('Test') {
+        steps {
+            script {
+                if (isUnix()) {
+                    sh 'grep ERROR app.txt'
+                } else {
+                    bat 'find "ERROR" app.txt'
+                }
+            }
+        }
+    }
+
+    stage('Deploy') {
+        when {
+            expression {
+                params.ENV == 'PROD'
+            }
+        }
+        steps {
+            echo 'Deploying to PROD'
+        }
+    }
+}
+```
+
+}
+
+---
+
+## STEP 8 – HOW TO TEST FAILURE
+
+1. Open app.txt
+
+2. Add:
+   ERROR
+
+3. Run pipeline → should FAIL
+
+4. Remove ERROR
+
+5. Run pipeline → should PASS
+
+---
+
+## STEP 9 – HOW TO RUN
+
+1. Push Jenkinsfile to GitHub
+2. Create Pipeline Job in Jenkins
+3. Select:
+   Pipeline script from SCM
+4. Add repo URL
+5. Run Build
+
+---
+
+## IMPORTANT NOTES
+
+1. File name must be:
+   Jenkinsfile (no extension)
+
+2. Plugins required:
+
+   * Pipeline
+   * Pipeline: Declarative
+
+3. For Linux use:
+   sh 'cat app.txt'
+
+4. For Windows use:
+   bat 'type app.txt'
+
+---
+
+## LEARNING SUMMARY
+
+* Jenkinsfile = pipeline as code
+* Stages = steps of CI/CD
+* Parameters = dynamic pipeline
+* Conditions = control flow
+* CI = validate before deploy
+
+---

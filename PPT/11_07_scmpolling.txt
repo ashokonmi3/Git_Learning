@@ -1,0 +1,258 @@
+EXAMPLE 1 – SCM POLLING (AUTO BUILD ON CODE CHANGE)
+
+---
+
+## STEP 1 – CREATE JOB
+
+New Item → scm-poll-job → Freestyle
+
+---
+
+## STEP 2 – CONFIGURE GIT
+
+Repository URL:
+https://github.com/<username>/jenkins-demo.git
+
+Branch:
+main
+
+---
+
+## STEP 3 – ADD BUILD STEP
+
+type app.txt
+
+---
+
+## STEP 4 – ENABLE SCM POLLING
+
+Build Triggers → Poll SCM ( we need to give the polling time here )
+
+Schedule:
+
+* * * * *
+
+
+## STEP 5 – TEST FLOW
+
+1. Modify file in GitHub
+2. Add new line:
+   Auto trigger test
+3. Commit
+
+---
+
+## EXPECTED RESULT
+
+Within 1 minute → Jenkins triggers build automatically
+
+Console Output:
+Started by SCM change
+
+---
+
+## LEARNING
+
+## Jenkins continuously monitors Git and auto-builds when code changes
+=======================
+EXAMPLE 2 – BUILD ONLY ON CHANGES
+
+---
+
+## STEP 1 – USE SAME SCM JOB
+
+scm-poll-job
+
+---
+
+## STEP 2 – RUN BUILD WITHOUT CHANGES
+
+Click Build Now
+
+---
+
+## STEP 3 – OBSERVE
+
+No SCM change detected
+
+---
+
+## STEP 4 – MODIFY FILE IN GITHUB
+
+Add:
+New change for CI
+
+Commit
+
+---
+
+## STEP 5 – WAIT
+
+Jenkins triggers build
+
+---
+
+## LEARNING
+
+## Jenkins avoids unnecessary builds → saves resources
+======================
+
+EXAMPLE 3 – MULTIPLE COMMITS SCENARIO
+
+---
+
+## STEP 1 – ENABLE SCM POLLING
+
+---
+
+---
+
+## STEP 2 – MAKE MULTIPLE CHANGES
+
+Commit 1:
+echo "Change 1" >> app.txt
+
+Commit 2:
+echo "Change 2" >> app.txt
+
+Commit 3:
+echo "Change 3" >> app.txt
+
+---
+
+## STEP 3 – WAIT
+
+Jenkins triggers build once
+
+---
+
+## STEP 4 – CHECK OUTPUT
+
+All changes present
+
+---
+
+## LEARNING
+
+## Jenkins batches changes → efficient CI
+====================
+EXAMPLE 4 – FAIL BUILD WHEN CODE IS BAD
+
+---
+
+## STEP 1 – MODIFY BUILD STEP
+
+Execute Windows batch:
+
+type app.txt
+
+find "ERROR" app.txt
+
+---
+
+## STEP 2 – PUSH NORMAL CODE
+
+No ERROR → Build SUCCESS
+
+---
+
+## STEP 3 – PUSH BAD CODE
+
+Add in GitHub:
+ERROR
+
+---
+
+## STEP 4 – WAIT FOR BUILD
+
+Build FAILS
+
+---
+
+## EXPECTED OUTPUT
+
+ERROR detected
+
+---
+
+## LEARNING
+
+## CI detects bad code early
+===============
+EXAMPLE 5 – BUILD FEATURE BRANCH
+
+---
+
+## STEP 1 – CREATE NEW JOB
+
+feature-branch-job
+
+---
+
+## STEP 2 – CONFIGURE GIT
+
+Branch:
+feature-login
+
+---
+
+## STEP 3 – ADD BUILD STEP
+
+type app.txt
+
+---
+
+## STEP 4 – RUN BUILD
+
+Build Now
+
+---
+
+## EXPECTED RESULT
+
+Feature code is built (not main)
+
+---
+
+## LEARNING
+
+## Different branches → different builds
+=================
+EXAMPLE 7 – SHOW CHANGE DETAILS
+
+---
+
+## STEP 1 – ADD BUILD STEP
+
+git log -1
+
+---
+
+## STEP 2 – RUN BUILD
+
+Build Now
+
+---
+
+## EXPECTED OUTPUT
+
+Shows last commit details
+
+---
+
+## STEP 3 – MODIFY CODE
+
+Commit new change
+
+---
+
+## STEP 4 – RUN AGAIN
+
+Shows new commit
+
+---
+
+## LEARNING
+
+## Jenkins tracks changes in code history
+

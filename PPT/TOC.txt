@@ -1,0 +1,7 @@
+Day 4 → Git
+Day 5 → AWS + Linux
+Day 6 → Maven
+Day 7 → Agent (Distributed builds)
+Day 8 → Pipeline + Groovy
+Day 9 → Docker
+Day 10 → Full CI/CD

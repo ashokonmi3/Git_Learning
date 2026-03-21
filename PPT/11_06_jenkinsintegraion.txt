@@ -1,0 +1,257 @@
+JENKINS + GIT INTEGRATION (FULL STEP-BY-STEP SCRIPT)
+
+---
+
+## PREREQUISITES
+
+1. Jenkins installed and running
+   http://localhost:8080
+
+2. Git installed
+   git --version
+
+3. GitHub repository created with code
+
+---
+
+## STEP 1 – VERIFY GITHUB REPO
+
+Ensure repo exists:
+https://github.com/ashokonmi3/Jenkins-Sample-Repo.git
+
+Repo should contain:
+app.txt or any sample file
+
+---
+
+## STEP 2 – INSTALL GIT PLUGIN IN JENKINS
+
+1. Go to Jenkins Dashboard
+2. Click:
+   Manage Jenkins
+3. Click:
+   Manage Plugins
+4. Go to:
+   Available Plugins
+5. Search:
+   Git Plugin
+6. Install plugin
+7. Restart Jenkins if required
+
+---
+
+## STEP 3 – CREATE JENKINS JOB
+
+1. Click:
+   New Item
+
+2. Enter name:
+   git-demo-job
+
+3. Select:
+   Freestyle Project
+
+4. Click:
+   OK
+
+---
+
+## STEP 4 – CONFIGURE SOURCE CODE MANAGEMENT
+
+1. Scroll to:
+   Source Code Management
+
+2. Select:
+   Git
+
+3. Enter Repository URL:
+https://github.com/ashokonmi3/Jenkins-Sample-Repo.git
+4. Branch:
+   main
+
+---
+
+## STEP 5 – ADD BUILD STEP
+
+1. Scroll to:
+   Build
+
+2. Click:
+   Add build step
+
+3. Select:
+   Execute Windows batch command
+
+4. Enter command:
+
+echo "Code pulled successfully"
+dir
+
+---
+
+## STEP 6 – SAVE JOB
+
+Click:
+Save
+
+---
+
+## STEP 7 – RUN BUILD
+
+1. Click:
+   Build Now
+
+2. Click build number
+
+3. Click:
+   Console Output
+
+---
+
+## EXPECTED OUTPUT
+
+Cloning repository
+Fetching changes
+Checking out revision
+Build step executed
+File list displayed
+
+---
+
+## STEP 8 – VERIFY WORKSPACE
+
+Go to path:
+
+C:\ProgramData\Jenkins.jenkins\workspace\git-demo-job
+
+Check:
+app.txt present
+
+---
+
+## STEP 9 – MODIFY CODE IN GITHUB
+
+1. Open GitHub repo
+2. Edit app.txt
+3. Add line:
+
+New version from GitHub
+
+4. Commit changes
+
+---
+
+## STEP 10 – BUILD AGAIN
+
+1. Go to Jenkins job
+
+2. Click:
+   Build Now
+
+3. Check Console Output
+
+---
+
+## EXPECTED RESULT
+
+Latest code pulled
+New changes visible
+
+---
+
+## STEP 11 – PRINT FILE CONTENT
+
+Modify build step:
+
+type app.txt
+
+Run build again
+
+---
+
+## STEP 12 – ENABLE POLL SCM
+
+1. Go to job configuration
+
+2. Scroll to:
+   Build Triggers
+
+3. Enable:
+   Poll SCM
+
+4. Schedule:
+
+---
+
+---
+
+## STEP 13 – TEST AUTO BUILD
+
+1. Modify file in GitHub
+2. Wait 1 minute
+3. Jenkins build triggers automatically
+
+---
+
+## STEP 14 – COMMON COMMANDS
+
+git clone
+git pull
+git fetch
+
+---
+
+## TROUBLESHOOTING
+
+1. GIT NOT FOUND
+   git --version
+   Install Git and add to PATH
+
+2. AUTHENTICATION FAILED
+   Use GitHub Personal Access Token
+
+3. REPO NOT CLONING
+   Check URL
+   Check internet
+   Check branch name
+
+4. NO LATEST CODE
+   Click Build Now
+   OR enable Poll SCM
+
+5. JOB FAILING
+   Check Console Output logs
+
+---
+
+## EXERCISE 1
+
+Create new job:
+git-print-job
+
+Command:
+type app.txt
+
+---
+
+## EXERCISE 2
+
+Modify GitHub file
+Run build
+Verify output updated
+
+---
+
+## EXERCISE 3
+
+Break repo URL
+Run build
+Fix issue
+
+---
+
+## FINAL FLOW
+
+Developer → GitHub → Jenkins → Build → Output
+
+---

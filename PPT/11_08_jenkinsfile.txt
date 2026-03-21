@@ -1,0 +1,152 @@
+BASIC JENKINSFILE EXAMPLE (PIPELINE FROM GIT)
+
+---
+
+## SCENARIO
+
+Code is stored in GitHub
+Jenkins reads Jenkinsfile from repo
+Pipeline runs automatically
+
+---
+
+## STEP 1 – CREATE PROJECT LOCALLY
+
+mkdir jenkinsfile-demo
+cd jenkinsfile-demo
+git init
+
+---
+
+## STEP 2 – CREATE SAMPLE FILE
+
+echo "Hello from Jenkins Pipeline" > app.txt
+
+---
+
+## STEP 3 – CREATE JENKINSFILE
+
+Create file named:
+Jenkinsfile
+
+Add below content:
+
+
+pipeline {
+agent any
+
+stages {
+    stage('Checkout Info') {
+        steps {
+            echo 'Code pulled from GitHub'
+        }
+    }
+
+    stage('Display File') {
+        steps {
+            bat 'type app.txt'
+        }
+    }
+
+    stage('Build Step') {
+        steps {
+            echo 'Simulating build process'
+        }
+    }
+}
+
+}
+
+---
+
+## STEP 4 – COMMIT CODE
+
+git add .
+git commit -m "Added Jenkinsfile"
+
+---
+
+## STEP 5 – PUSH TO GITHUB
+
+git remote add origin https://github.com/<username>/jenkinsfile-demo.git
+git branch -M main
+git push -u origin main
+
+---
+
+## STEP 6 – CREATE JENKINS PIPELINE JOB
+
+New Item → pipeline-job → Pipeline
+
+---
+
+## STEP 7 – CONFIGURE PIPELINE
+
+Scroll to:
+Pipeline section
+
+Definition:
+Pipeline script from SCM
+
+SCM:
+Git
+
+Repository URL:
+https://github.com/<username>/jenkinsfile-demo.git
+
+Branch:
+main
+
+Script Path:
+Jenkinsfile
+
+---
+
+## STEP 8 – SAVE JOB
+
+Click Save
+
+---
+
+## STEP 9 – RUN PIPELINE
+
+Click:
+Build Now
+
+---
+
+## EXPECTED OUTPUT
+
+Stage: Checkout Info
+→ Code pulled from GitHub
+
+Stage: Display File
+→ Hello from Jenkins Pipeline
+
+Stage: Build Step
+→ Simulating build process
+
+---
+
+## STEP 10 – MODIFY CODE IN GITHUB
+
+Edit app.txt
+
+Add:
+Updated from GitHub
+
+Commit
+
+---
+
+## STEP 11 – RUN BUILD AGAIN
+
+Pipeline reflects latest change
+
+---
+
+## LEARNING
+
+Pipeline is stored in Git
+Jenkins automatically executes steps defined in Jenkinsfile
+-----------------------------------------------------------
